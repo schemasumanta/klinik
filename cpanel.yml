@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/u1587466/public_html/hmsmedika.com
-    - /bin cp -r * $DEPLOYPATH
+    - export DEPLOYPATH=/home/u1587466/public_html
+    - /bin cp /hmsmedika.com/* -r  $DEPLOYPATH
