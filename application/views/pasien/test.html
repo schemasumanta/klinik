@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+</head>
+<body>
+ <?php foreach($cetak as $row){ ?>
+<div class="container mt-5" > 
+  <div class="card" style="width:100% ; "> 
+    <img class="img" src="<?php echo base_url() ?>assets/img/header.png" style="width:100%;background:red">
+    <img class="img" src="<?php echo base_url() ?>assets/img/kartu_pasien1.png" style="width:100%;" >
+  
+    <div class="card-body"  > 
+    	<!-- <div class="card" style="margin-left: 400px; margin-right: 400px"> -->
+      <h4 style="text-align: center; font-weight: bold; font-size: 30px; " class="card-title"> <?php echo $row->kode_pasien ?></h4>
+ 	 <!-- </div> -->
+ 	 <hr style="background: black">
+    <div class="row">
+    	<div class="col-sm-5 ml-2">
+    		 <label class="card-text" style="font-weight: bold; font-size: 25px;">ID</label>
+    	</div>
+    	<div class="col-sm-6">
+    		 <p class="card-text" style="  font-size: 25px;"> : <?php echo $row->no_registrasi ?>   </p>
+    	</div> 
+    </div>  
+
+      <div class="row">
+    	<div class="col-sm-5 ml-2">
+    		 <label class="card-text" style="font-weight: bold;font-size: 25px; ">Nama Pasien</label>
+    	</div>
+    	<div class="col-sm-6">
+    		 <p class="card-text" style="  font-size: 25px;"> : <?php echo ucfirst($row->nama_pasien) ?>   </p>
+    	</div> 
+    </div> 
+
+    <div class="row">
+    	<div class="col-sm-5 ml-2">
+    		 <label class="card-text"style="font-weight: bold; font-size: 25px;" >Tgl Lahir</label>
+    	</div>
+    	<div class="col-sm-6">
+    		 <p class="card-text" style="  font-size: 25px;"> : <?php echo ucfirst($row->tempat_lahir).','. $row->tanggal_lahir ?>   </p>
+    	</div> 
+    </div> 
+
+    <div class="row">
+    	<div class="col-sm-5 ml-2">
+    		 <label class="card-text" style="font-weight: bold;font-size: 25px; ">Jenis Kelamin</label>
+    	</div>
+    	<div class="col-sm-6">
+    		 <p class="card-text" style="  font-size: 25px;"> : <?php echo $row->jk ?>   </p>
+    	</div> 
+    </div> 
+
+    <!-- <hr style="background: black"> -->
+    <br>
+     <div class="footer">
+     	<!-- <p>JL.Pasier Berem, Rt/Rw:01:03, Desa.Jagabaya, Kecapatan. Parungpanjang, Kabupaten. Bogor</p> -->
+    	<img class="img" src="<?php echo base_url() ?>assets/img/footer.png" style="width:100%;background:red">
+
+     </div>
+
+    </div>
+  </div>
+  <br>
+
+  
+</div>
+  <?php } ?>
+
+
+</body>
+</html>

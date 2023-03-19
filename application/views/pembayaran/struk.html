@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <title>Struk Pembayaran</title>
+  <style type="text/css">
+    * {  
+      font-family: 'Arial';
+    }
+
+    td,
+    th,
+    tr,
+    table {
+      border-top: 1px solid black; 
+      border-collapse: collapse;
+    } 
+
+    .centered {
+      text-align: center;
+      align-content: center;
+      margin-left: 2px;
+    }
+
+    .ticket {
+      width: 260px;
+      max-width: 260px;
+      margin-left:0px;
+      margin-right: 5px;
+    }
+
+    img {
+      max-width: inherit;
+      width: inherit;
+    }
+
+    @media print {
+      .hidden-print,
+      .hidden-print * {
+        display: none !important;
+      }
+
+      .judul{
+        text-align: left;
+        padding-left: 100px;
+        font-size: 20px;
+      }
+
+
+
+    </style>
+  </head>
+  <body>
+    <?php foreach($struk_pembayaran as $key){ ?>
+      <div class="ticket">
+        <!-- <img src="./logo.png" alt="Logo"> -->
+        <img src="<?php echo base_url() ?>assets/img/a.png" style=" margin-left: 10px;" > 
+        <p style="font-size: 15px; text-align: center;  margin-left: 2px;">Jl.Pasir Beureum, Desa.Jagabaya, Kec.Parungpanjang</p>
+        <P style="font-size: 17px; text-align: center;  margin-left: 2px;"> BUKTI PEMBAYARAN <br>
+         <?php echo ucfirst($key->kode_rekam); ?><br>--------------------------------------<br>KODE PASIEN : <?php echo $key->kode_pasien?></p> 
+
+       </thead> 
+       <th class="obat"style="text-align: left;font-size: 14px; font-weight: bold;">Tanggal</th>
+       <th >:</th>
+       <th class="description" style="font-size: 14px;font-weight: bold;"><?php echo $key->tanggal_periksa?></th>
+
+     </thead><br>
+
+      </thead> 
+       <th class="obat"style="text-align: left;font-size: 14px; font-weight: bold;">No.Reg</th>
+       <th >:</th>
+       <th class="description" style="font-size: 14px;font-weight: bold;"><?php echo $key->no_registrasi?></th> 
+         
+     </thead>
+
+   </thead> <br> 
+   <th class="obat"style="text-align: left;font-size: 14px;font-weight: bold;">Nama</th>
+   <th >:</th>
+   <th class="description" style="font-size: 14px;font-weight: bold;"><?php echo $key->nama_pasien?></th>   
+ </thead>
+
+</thead> <br> 
+<th class="obat"style="text-align: left;font-size: 14px;font-weight: bold;">Jenis Kelamin</th>
+<th >:</th>
+<th class="description" style="font-size: 14px;font-weight: bold;"><?php if ($key->jk=="L") { echo "Laki-Laki"; } else{ echo "Perempuan"; }  ?></th>   
+</thead> 
+ 
+</thead> <br> 
+<th class="obat"style="text-align: left;font-size: 14px;font-weight: bold;">Pemeriksaan </th>
+<th >:</th>
+<th class="description" style="font-size: 14px;font-weight: bold;"><?php echo $key->pengobatan?></th>   
+</thead> 
+
+
+<br>
+<br>
+<table width="100%">
+  <thead>
+    <tr>
+    <?php if (count($detail_obat) > 0){ ?>
+
+      <th class="obat"style="text-align: left;font-size:18px">Obat</th>
+      <th class="qty" style="font-size:18px">Qty</th>
+    <?php }else{ ?>
+      <th class="obat"style="text-align: left;font-size:18px" colspan="2">Rincian</th>
+    <?php } ?>
+      <th class="rp" style="text-align: right;font-size:18px">Rp.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php if (count($detail_obat) > 0){ ?>
+
+     <?php foreach ($detail_obat as $obat) {?>
+      <tr>
+        <td  style="text-align: left;font-size: 18px; "><?php echo $obat->nama_obat?></td>
+        <td  style="text-align: center;font-size: 18px"><?php echo $obat->qty?></td>
+        <td  style="text-align: right;font-size: 18px"><?php echo number_format(($obat->subtotal), 0, ',', '.')?></td>
+      </tr> 
+
+    </tr>
+
+  <?php } ?>
+
+<?php } ?>
+
+
+<!-- <?php if ($key->pengobatan !=null && $key->pemeriksaan_rapid =0): ?>
+
+
+<tr> 
+  <td><?php echo $key->pengobatan;  ?></td>    
+  <td> </td> 
+  <td style="text-align: right;"><?php echo $key->pemeriksaan_rapid; ?></td> 
+</tr>
+<?php endif ?> -->
+
+
+
+
+<tr> 
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr> 
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+
+
+<?php $k=1; if (count($tambahan)>0) {?>
+  <tr>
+  <td colspan="3" style=" font-size:18px">Pengobatan Tambahan</td> 
+
+</tr>
+<?php foreach ($tambahan as $tambah){ ?>
+
+<tr>
+  <td style=" font-size:18px"><?php echo $tambah->tindakan_pemeriksaan;  ?></td>
+  <td></td>
+  <td style="text-align: right;font-size:18px"><?php echo number_format($tambah->biaya_pemeriksaan, 0, ',', '.'); ?></td> 
+</tr>
+<?php }}?>
+
+    <?php if (count($detail_obat) > 0){ ?>
+  
+<tr>
+  <td style=" font-size:18px">Total</td>
+  <td></td>
+  <td style="text-align: right;font-size:18px"> <?php echo number_format(floatval($key->total_akhir) - floatval($key->upah_dokter), 0, ',', '.'); ?></td> 
+</tr>
+<?php } ?>
+
+<tr>
+  <td style=" font-size:18px">Jasa Dokter</td>
+  <td></td>
+  <td style="text-align: right;font-size:18px"> <?php echo number_format(($key->upah_dokter), 0, ',', '.'); ?></td>
+
+</tr>
+
+<tr>
+  <td style=" font-size:18px">Biaya Admin</td>
+  <td></td>
+  <td style="text-align: right;font-size:18px"><?php echo number_format(($key->biaya_admin), 0, ',', '.'); ?></td>
+
+</tr> 
+<tr>
+  <td style=" font-size:18px">Disc (Rp)</td>
+  <td></td>
+  <td style="text-align: right;font-size:18px"> <?php echo $key->discount; ?></td>
+
+</tr>
+
+<tr> 
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr> 
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+
+<tr>
+  <td style=" font-size:18px;font-weight: bold;">Total Pengobatan</td>
+  <td></td>
+  <td style="text-align: right;font-size:18px;font-weight: bold;"> <?php echo number_format($key->total_pembayaran, 0, ',', '.'); ?></td>
+</tr>
+<?php if ($key->tagihan_sebelumnya !=0): ?>
+  <tr>
+    <td style=" font-size:18px;font-weight: bold;">Tagihan Sebelumnya</td>
+    <td></td>
+    <td style="text-align: right;font-size:18px;font-weight: bold;"> <?php echo number_format ($key->tagihan_sebelumnya, 0, ',', '.'); ?></td>
+
+  </tr>
+<?php endif ?>
+
+
+
+<tr>
+  <td style=" font-size:18px;font-weight: bold;">Dibayarkan</td>
+  <td></td>
+  <td style="text-align: right;font-size:18px;font-weight: bold;"> <?php echo number_format($key->dibayarkan, 0, ',', '.'); ?></td>
+
+</tr> 
+
+<tr>
+  <td style=" font-size:18px;font-weight: bold;">Kembalian</td>
+  <td></td>
+  <td style="text-align: right;font-size:18px;font-weight: bold;"> <?php echo number_format($key->kembalian, 0, ',', '.'); ?></td>
+
+</tr> 
+
+<tr>
+  <td style=" font-size:18px;font-weight: bold;">Sisa Tagihan</td>
+  <td></td>
+  <td style="text-align: right;font-size:18px;font-weight: bold;"> <?php echo number_format(floatval($key->total_pembayaran)+floatval($key->tagihan_sebelumnya)-floatval($key->dibayarkan)+floatval($key->kembalian), 0, ',', '.'); ?></td>
+
+</tr> 
+
+
+</tbody>
+</table>
+
+<p class="centered" style="font-weight: bold;font-size: 16px;">-----------------------------------------------<br>Thanks for your purchase!</p>
+<p style="text-align: center; font-size:15px;">Melayani : Sunat Anak (laser) - Praktek Dokter umum- Praktek Kebidanan  <br> Persalinan 24 Jam <br>No. 62 858-9380-7155 </p>
+
+</div>
+
+<?php } ?>
+<br>
+<button id="btnPrint" class="hidden-print">Print</button>
+
+</body>
+</html>
+
+<script type="text/javascript">
+  const $btnPrint = document.querySelector("#btnPrint");
+  $btnPrint.addEventListener("click", () => {
+    window.print();
+  });
+</script>

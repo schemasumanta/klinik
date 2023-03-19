@@ -1,0 +1,164 @@
+
+
+
+		<div class="page-inner mt--5">
+
+			<div class="row row-card-no-pd mt--2" >
+				<div class="col-sm-6 col-md-3" >
+					<div class="card card-stats card-round" style="background: #03b509; font-weight: bold">
+						<div class="card-body ">
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center"> 
+										<i class="fas fa-file-excel text-white"   onclick="tarikdatabytanggal_umum('DRAFT')"></i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category text-white ">REPORT UMUM</p>
+										<!-- <h4 class="card-title">100</h4> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-sm-6 col-md-3" >
+					<div class="card card-stats card-round" style="background: #03b509; font-weight: bold">
+						<div class="card-body ">
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center"> 
+										<i class="fas fa-file-excel text-white"   onclick="tarikdatabytanggal_kb('DRAFT')"></i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category text-white ">REPORT KB</p>
+										<!-- <h4 class="card-title">100</h4> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+ 
+
+
+				<div class="col-sm-6 col-md-3">
+					<div class="card card-stats card-round" style="background: #03b509; font-weight: bold">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center">
+										<i class="fas fa-file-excel text-white" onclick="tarikdatabytanggal_anc('DRAFT')"></i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category text-white">REPORT ANC</p>
+										<!-- <h4 class="card-title">5</h4> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<div class="card card-stats card-round" style="background: #03b509; font-weight: bold">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center">
+										<i class="fas fa-file-excel text-white"></i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category text-white">REPORT INC</p>
+										<!-- <h4 class="card-title">45</h4> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> 
+
+			</div> 
+
+
+		</div> 
+
+		<div class="page-inner mt--5">
+
+			<div class="row row-card-no-pd mt--2 " > 
+
+				<div class="col-sm-6 col-md-4" >
+					<div class="card card-stats card-round" style="background: #03b509; font-weight: bold;">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center">
+										<i class="fas fa-file-excel text-white" onclick="tarikdatabytanggal_bbl('DRAFT')"> </i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category text-white">REPORT BBL</p>
+										<!-- <h4 class="card-title">45</h4> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+					<div class="col-sm-6 col-md-4" >
+					<div class="card card-stats card-round" style="background: #03b509; font-weight: bold;">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center">
+										<i class="fas fa-file-excel text-white" onclick="tarikdatabytanggal_pnc('DRAFT')"> </i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category text-white">REPORT PNC</p>
+										<!-- <h4 class="card-title">45</h4> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				 
+
+				<div class="col-sm-6 col-md-4">
+					<div class="card card-stats card-round" style="background: #03b509; font-weight: bold">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-5">
+									<div class="icon-big text-center"> 
+										<i class="fas fa-file-excel text-white"  onclick="tarikdatabytanggal_imunisasi('DRAFT')"></i>
+									</div>
+								</div>
+								<div class="col-7 col-stats">
+									<div class="numbers">
+										<p class="card-category text-white">REPORT IMUNISASI</p>
+										<!-- <h4 class="card-title">45</h4> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div> 
+
+
+		</div> 

@@ -1,0 +1,1514 @@
+<div class="main-panel">
+	<div class="content">
+		<div class="page-inner">
+			<style type="text/css">
+			.labelkolom{
+				background: #03b509;
+				color :white;
+			}
+		</style>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<?php foreach ($periksa_inc as $row){ ?>
+						<div class="card-header">     
+							<div class="row">
+								<div class="col-md-12">
+									<img src="<?php echo base_url() ?>assets/img/user.png" style="border-radius: 50%" width="60px" height="60px">
+									<H4 style="position: absolute; right: 0;top:0;margin-right: 30px;font-weight: bold;color: green">REKAM DATA PENGOBATAN</H4>
+									<h6 style="position: absolute; right: 0; margin-top:-20px;margin-right: 30px"><?php echo ucwords($row->nama_pasien)." - ".$row->no_registrasi ?></h6>
+									<!-- <h6 style="position: absolute; right: 0; margin-top:-1px;margin-right: 30px"><?php echo $row->telepon ?></h6> -->
+
+									<hr>
+									<h6  style="position: absolute; right: 0; margin-top:-10px;margin-right: 30px;font-weight: bold;">#
+										<?php $tanggal=explode('-', $row->tanggal_berobat);
+										$bulan = array('01' => 'Januari','02' => 'Februari','03' => 'Maret','04' => 'April','05' => 'Mei','06' => 'Juni','07' => 'Juli','08' => 'Agustus','09' => 'September','10' => 'Oktober','11' => 'November','12' => 'Desember',);
+										echo $tanggal[2]." ".$bulan[$tanggal[1]]." ".$tanggal[0]?></h6>
+
+									</div>						
+								</div>
+							</div> 
+
+							<div class="card-body">  
+								<form class="form-horizontal updatedata" method="post" id="form1" name="form1">
+									<div class="form-group row" style="background: #03b509">
+										<div class="col-sm-12 float-sm-right">
+											<h6 type="button transparent" onclick="hidecustomer()" style="letter-spacing:3px;color:white; background:transparent;margin-top: 10px" data-toggle="collapse" href="#customer_collapse" role="button" aria-expanded="false" aria-controls="customer_collapse"><b>DATA PASIEN</b></h6>
+
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-md-12 mt-3"> 
+											<div class="form-group row"> 
+												<input style="display: none;" type="text" class="form-control"  id="kode_pasien" name="kode_pasien" value="<?php echo $row->kode_pasien ?>" >
+												<input style="display: none;" type="text" class="form-control"  id="nama_pasien" name="nama_pasien" value="<?php echo $row->nama_pasien ?>" >
+												<input style="display: none;" type="text" class="form-control"  id="no_registrasi" name="no_registrasi" value="<?php echo $row->no_registrasi ?>" >
+												<input style="display: none;" type="date" class="form-control"  id="tanggal_berobat" name="tanggal_berobat" value="<?php $tanggal=explode('-', $row->tanggal_berobat);
+												$bulan = array('01' => 'Januari','02' => 'Februari','03' => 'Maret','04' => 'April','05' => 'Mei','06' => 'Juni','07' => 'Juli','08' => 'Agustus','09' => 'September','10' => 'Oktober','11' => 'November','12' => 'Desember',);
+												echo $tanggal[2]." ".$bulan[$tanggal[1]]." ".$tanggal[0]?>" > 
+
+												<div class="input-group col-md-3 mb-3" style="display: none;">
+													<div class="input-group-prepend">
+														<span class="input-group-text labelkolom">Tanggal</span>
+													</div>
+													<input type="text" class="form-control"  id="tanggal_berobat" name="tanggal_berobat" value="<?php echo $row->tanggal_berobat ?>">
+												</div>
+
+
+												<div class="col-md-4 mb-3"> 
+													<span class="input-group-text labelkolom"> KODE REKAM inc</span> 
+													<input type="text" class="form-control"  id="kode_inc" name="kode_inc" value="<?php echo $row->kode_inc ?>" style="border-color: #03b509; background: #ffffff"  onclick="this.blur()">
+												</div>   
+
+												<div class=" col-md-2 mb-3"> 
+													<span class="input-group-text labelkolom"> Kepala Keluarga</span> 
+													<input type="text" class="form-control"  id="kepala_keluarga" name="kepala_keluarga" value="<?php echo $row->kepala_keluarga ?>" style="border-color: #03b509; background: #ffffff"  onclick="this.blur()" >
+												</div> 
+
+												<div class="col-md-2 mb-3"> 
+													<span class="input-group-text labelkolom">Tempat Lahir</span> 
+													<input type="date('Y-m-d')" class="form-control"  id="tempat_lahir" name="tempat_lahir" value="<?php echo $row->tempat_lahir; ?>" style="border-color: #03b509; background: #ffffff"  onclick="this.blur()" >
+												</div>
+
+												<div class="col-md-2 mb-3"> 
+													<span class="input-group-text labelkolom">Tanggal Lahir</span> 
+													<input type="date('Y-m-d')" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="<?php echo $row->tanggal_lahir ?>" style="border-color: #03b509; background: #ffffff"  onclick="this.blur()">
+												</div>
+
+												<div class="col-md-2 mb-3"> 
+													<span class="input-group-text labelkolom">No.Telepon</span> 
+													<input type="text" class="form-control"  id="telepon" name="telepon" value="<?php echo $row->telepon ?>" style="border-color: #03b509; background: #ffffff"  onclick="this.blur()">
+												</div>
+
+
+												<div class="col-md-6 mb-3"> 
+													<span class="input-group-text labelkolom">Alamat Lengkap</span> 
+													<textarea type="text" class="form-control"  id="alamat" name="alamat" style="border-color: #03b509; background: #ffffff"  onclick="this.blur()" ><?php echo $row->alamat ?></textarea> 
+												</div> 
+
+												<div class="col-md-4 mb-3"> 
+													<span class="input-group-text labelkolom">Status Pasien</span> 
+													<textarea type="text" class="form-control"  id="status_pasien" name="status_pasien" style="border-color: #03b509; background: #ffffff"  onclick="this.blur()" > <?php echo $row->status_pasien ?></textarea>
+												</div>
+
+												<div class="col-md-2 mb-3"> 
+													<span class="input-group-text labelkolom">Umur</span> 
+													<textarea type="text" class="form-control" id="umur" name="umur" style="border-color: #03b509; background: #ffffff;text-align: center;"  onclick="this.blur()" ><?php echo $row->umur ?></textarea>
+												</div>
+												
+											</div> 
+
+										</div>  
+									</div>
+									<br>
+									<div class="form-group row" style="background: #03b509">
+
+										<div class="col-sm-12 float-sm-right">
+											<h6 type="button transparent" onclick="hidecustomer()" style="letter-spacing:3px;color:white; background:transparent;margin-top: 10px" data-toggle="collapse" href="#customer_collapse" role="button" aria-expanded="false" aria-controls="customer_collapse"><b>REKAM INC</b></h6>
+
+										</div> 
+
+									</div>
+									<br>
+
+
+
+									<div class="col-md-12 mb-3" > 
+										<span class="input-group-text labelkolom">Tanggal Diperiksa</span> 
+										<input type="date" class="form-control"  id="tanggal_periksa" name="tanggal_periksa"  value="<?php echo $row->tanggal_periksa ?>"   style="border-color: #03b509; background: #ffffff">
+									</div>
+
+									<div class="row">
+											<div class=" col-md-3 mb-3"> 
+												<span class="input-group-text labelkolom">Suhu</span> 
+												<input type="text" class="inputatas form-control"  id="suhu" name="suhu" required="required" value="<?php echo $row->suhu ?>">
+											</div>
+
+
+											<div class=" col-md-3 mb-3"> 
+												<span class="input-group-text labelkolom">Tensi Darah</span>
+												<input type="text" class="inputatas form-control"  id="tensi_darah" name="tensi_darah" required="required" value="<?php echo $row->tensi_darah ?>">
+											</div>
+
+											<div class=" col-md-3 mb-3"> 
+												<span class="input-group-text labelkolom">Saturasi</span> 
+												<input  type="text" class="inputatas form-control"  id="saturasi" name="saturasi" required="required" value="<?php echo $row->saturasi ?>" >
+											</div>
+
+
+
+											<div class=" col-md-3 mb-3"> 
+												<span class="input-group-text labelkolom">Frequansi Pernapasan</span> 
+												<input type="text" class="inputatas form-control"  id="pernapasan" name="pernapasan" required="required" value="<?php echo $row->pernapasan ?>">
+											</div>
+
+											<div class="col-md-3 mb-3"> 
+												<span class="input-group-text labelkolom">Frequansi Nadi</span> 
+												<input type="text" class="inputatas form-control"  id="nadi" name="nadi" required="required" value="<?php echo $row->nadi ?>">
+											</div>
+
+											<div class="col-md-3 mb-3">
+												<span class="input-group-text labelkolom">Berat Badan</span>
+												<input type="text" class="form-control"  id="bb" name="bb"  style="border-color: #03b509; background: #ffffff"  value="<?php echo $row->bb ?>">
+											</div>
+
+											<div class="col-md-3 mb-3">
+												<span class="input-group-text labelkolom">Tinggi Badan</span>
+												<input type="text" class="form-control"  id="tb" name="tb"  style="border-color: #03b509; background: #ffffff"  value="<?php echo $row->tb ?>">
+											</div>
+										</div>
+
+										<br>
+										<hr>
+
+									<div class="col-md-12">
+										<ul class="nav nav-pills nav-success w-100" id="pills-tab" role="tablist">
+											<li class="nav-item submenu w-25 text-center fw-bold">
+												<a class="nav-link active show" id="pills-subjektif-tab" data-toggle="pill" href="#pills-subjektif" role="tab" aria-controls="pills-subjektif" aria-selected="true">SUBJEKTIF</a>
+											</li>
+											<li class="nav-item submenu w-25 text-center fw-bold">
+												<a class="nav-link" id="pills-objektif-tab" data-toggle="pill" href="#pills-objektif" role="tab" aria-controls="pills-objektif" aria-selected="false">OBJEKTIF</a>
+											</li>
+											<li class="nav-item submenu w-25 text-center fw-bold">
+												<a class="nav-link" id="pills-assesment-tab" data-toggle="pill" href="#pills-assesment" role="tab" aria-controls="pills-assesment" aria-selected="false">ASSESMENT</a>
+											</li>
+											<li class="nav-item submenu w-25 text-center fw-bold">
+												<a class="nav-link" id="pills-planning-tab" data-toggle="pill" href="#pills-planning" role="tab" aria-controls="pills-planning" aria-selected="false">PLANNING</a>
+											</li>
+										</ul>
+										<div class="tab-content mt-2 mb-3" id="pills-tabContent">
+											<div class="tab-pane fade active show" id="pills-subjektif" role="tabpanel" aria-labelledby="pills-subjektif-tab">
+												<div class="row">
+													<div class="col-3">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA I</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" style="font-size:12px;font-weight:bold" class="form-control"  id="tanggal_subjektif_kala1" name="tanggal_subjektif_kala1" value="<?php echo $row->tanggal_subjektif_kala1."T".$row->jam_subjektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-12">
+																		<span class="input-group-text labelkolom">Keterangan Pasien</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_pasien_subjektif_kala1" name="keterangan_pasien_subjektif_kala1" rows="10"><?php echo $row->keterangan_pasien_subjektif_kala1; ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-3">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA II</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" style="font-size:12px;font-weight:bold" class="form-control"  id="tanggal_subjektif_kala2" name="tanggal_subjektif_kala2" value="<?php echo $row->tanggal_subjektif_kala2."T".$row->jam_subjektif_kala2 ?>">
+																	</div>
+																	<div class="col-md-12">
+																		<span class="input-group-text labelkolom">Keterangan Pasien</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_pasien_subjektif_kala2" name="keterangan_pasien_subjektif_kala2" rows="10"><?php echo $row->keterangan_pasien_subjektif_kala2; ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-3">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA III</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" style="font-size:12px;font-weight:bold" class="form-control"  id="tanggal_subjektif_kala3" name="tanggal_subjektif_kala3" value="<?php echo $row->tanggal_subjektif_kala3."T".$row->jam_subjektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-12">
+																		<span class="input-group-text labelkolom">Keterangan Pasien</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_pasien_subjektif_kala3" name="keterangan_pasien_subjektif_kala3" rows="10"><?php echo $row->keterangan_pasien_subjektif_kala3; ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-3">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA IV</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" style="font-size:12px;font-weight:bold" class="form-control"  id="tanggal_subjektif_kala4" name="tanggal_subjektif_kala4" value="<?php echo $row->tanggal_subjektif_kala4."T".$row->jam_subjektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-12">
+																		<span class="input-group-text labelkolom">Keterangan Pasien</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_pasien_subjektif_kala4" name="keterangan_pasien_subjektif_kala4" rows="10"><?php echo $row->keterangan_pasien_subjektif_kala4; ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="pills-objektif" role="tabpanel" aria-labelledby="pills-objektif-tab">
+												<div class="row">
+													<div class="col-12">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA I</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_objektif_kala1" name="tanggal_objektif_kala1" value="<?php echo $row->tanggal_objektif_kala1."T".$row->jam_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Keadaan Umum</span> 
+																		<input type="text" class="form-control"  id="keadaan_umum_objektif_kala1" name="keadaan_umum_objektif_kala1" value="<?php echo $row->keadaan_umum_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3  mb-3">
+																		<span class="input-group-text labelkolom">Kesadaran</span> 
+																		<input type="text" class="form-control"  id="kesadaran_objektif_kala1" name="kesadaran_objektif_kala1" value="<?php echo $row->kesadaran_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Keadaan Emosional</span> 
+																		<input type="text" class="form-control"  id="keadaan_emosional_objektif_kala1" name="keadaan_emosional_objektif_kala1"  value="<?php echo $row->keadaan_emosional_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text bg-dark" style="color: white">TTV</span> 
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">TD</span> 
+																		<input type="text" class="form-control"  id="td_objektif_kala1" name="td_objektif_kala1" value="<?php echo $row->td_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Nadi</span> 
+																		<input type="text" class="form-control"  id="nadi_objektif_kala1" name="nadi_objektif_kala1"  value="<?php echo $row->nadi_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-2 mb-3">
+																		<span class="input-group-text labelkolom">Respirasi</span> 
+																		<input type="text" class="form-control"  id="respirasi_objektif_kala1" name="respirasi_objektif_kala1"  value="<?php echo $row->respirasi_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-2 mb-3">
+																		<span class="input-group-text labelkolom">Suhu</span> 
+																		<input type="text" class="form-control"  id="suhu_objektif_kala1" name="suhu_objektif_kala1"  value="<?php echo $row->suhu_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-2 mb-3">
+																		<span class="input-group-text labelkolom">TFU</span> 
+																		<input type="text" class="form-control"  id="tfu_objektif_kala1" name="tfu_objektif_kala1" value="<?php echo $row->tfu_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">leopold I</span> 
+																		<input type="text" class="form-control"  id="leopold1_objektif_kala1" name="leopold1_objektif_kala1" value="<?php echo $row->leopold1_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">leopold II</span> 
+																		<input type="text" class="form-control"  id="leopold2_objektif_kala1" name="leopold2_objektif_kala1" value="<?php echo $row->leopold2_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">leopold III</span> 
+																		<input type="text" class="form-control"  id="leopold3_objektif_kala1" name="leopold3_objektif_kala1" value="<?php echo $row->leopold3_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">leopold IV</span> 
+																		<input type="text" class="form-control"  id="leopold4_objektif_kala1" name="leopold4_objektif_kala1" value="<?php echo $row->leopold4_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Penurunan</span> 
+																		<input type="text" class="form-control"  id="penurunan_objektif_kala1" name="penurunan_objektif_kala1" value="<?php echo $row->penurunan_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">DJJ</span> 
+																		<input type="text" class="form-control"  id="djj_objektif_kala1" name="djj_objektif_kala1" value="<?php echo $row->djj_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">HIS</span> 
+																		<input type="text" class="form-control"  id="his_objektif_kala1" name="his_objektif_kala1" value="<?php echo $row->his_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">TJB</span> 
+																		<input type="text" class="form-control"  id="tjb_objektif_kala1" name="tjb_objektif_kala1" value="<?php echo $row->tjb_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">V / v</span> 
+																		<input type="text" class="form-control"  id="vv_objektif_kala1" name="vv_objektif_kala1" value="<?php echo $row->vv_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Pembukaan</span> 
+																		<input type="text" class="form-control"  id="pembukaan_objektif_kala1" name="pembukaan_objektif_kala1" value="<?php echo $row->pembukaan_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Portio</span> 
+																		<input type="text" class="form-control"  id="portio_objektif_kala1" name="portio_objektif_kala1" value="<?php echo $row->portio_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Ketuban</span> 
+																		<input type="text" class="form-control"  id="ketuban_objektif_kala1" name="ketuban_objektif_kala1" value="<?php echo $row->ketuban_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Plasenta</span> 
+																		<input type="text" class="form-control"  id="plasenta_objektif_kala1" name="plasenta_objektif_kala1" value="<?php echo $row->plasenta_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Hodge</span> 
+																		<input type="text" class="form-control"  id="hodge_objektif_kala1" name="hodge_objektif_kala1" value="<?php echo $row->hodge_objektif_kala1 ?>">
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Ubun-Ubun</span> 
+																		<input type="text" class="form-control"  id="ubun_ubun_objektif_kala1" name="ubun_ubun_objektif_kala1" value="<?php echo $row->ubun_ubun_objektif_kala1 ?>">
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-12">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA II</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_objektif_kala2" name="tanggal_objektif_kala2" value="<?php echo $row->tanggal_objektif_kala2."T".$row->jam_objektif_kala2 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">V / v</span> 
+																		<input type="text" class="form-control"  id="vv_objektif_kala2" name="vv_objektif_kala2" value="<?php echo $row->vv_objektif_kala2 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Pembukaan</span> 
+																		<input type="text" class="form-control"  id="pembukaan_objektif_kala2" name="pembukaan_objektif_kala2" value="<?php echo $row->pembukaan_objektif_kala2 ?>">
+																	</div>
+																	<div class="col-md-3 mb-3">
+																		<span class="input-group-text labelkolom">Ketuban</span> 
+																		<input type="text" class="form-control"  id="ketuban_objektif_kala2" name="ketuban_objektif_kala2" value="<?php echo $row->ketuban_objektif_kala2 ?>">
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Ubun-Ubun</span> 
+																		<input type="text" class="form-control"  id="ubun_ubun_objektif_kala2" name="ubun_ubun_objektif_kala2" value="<?php echo $row->ubun_ubun_objektif_kala2 ?>">
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Portio</span> 
+																		<input type="text" class="form-control"  id="portio_objektif_kala2" name="portio_objektif_kala2" value="<?php echo $row->portio_objektif_kala2 ?>">
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA III</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_objektif_kala3" name="tanggal_objektif_kala3"  value="<?php echo $row->tanggal_objektif_kala4."T".$row->jam_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-6  mb-3">
+																		<span class="input-group-text labelkolom">Kesadaran</span> 
+																		<input type="text" class="form-control"  id="kesadaran_objektif_kala3" name="kesadaran_objektif_kala3" value="<?php echo $row->kesadaran_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Keadaan Umum</span> 
+																		<input type="text" class="form-control"  id="keadaan_umum_objektif_kala3" name="keadaan_umum_objektif_kala3" value="<?php echo $row->keadaan_umum_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text bg-dark" style="color: white">TTV</span> 
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">TD</span> 
+																		<input type="text" class="form-control"  id="td_objektif_kala3" name="td_objektif_kala3" value="<?php echo $row->td_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Nadi</span> 
+																		<input type="text" class="form-control"  id="nadi_objektif_kala3" name="nadi_objektif_kala3" value="<?php echo $row->nadi_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Respirasi</span> 
+																		<input type="text" class="form-control"  id="respirasi_objektif_kala3" name="respirasi_objektif_kala3" value="<?php echo $row->respirasi_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Suhu</span> 
+																		<input type="text" class="form-control"  id="suhu_objektif_kala3" name="suhu_objektif_kala3" value="<?php echo $row->suhu_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">TFU</span> 
+																		<input type="text" class="form-control"  id="tfu_objektif_kala3" name="tfu_objektif_kala3" value="<?php echo $row->tfu_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Kandung Kemih</span> 
+																		<input type="text" class="form-control"  id="kandung_kemih_objektif_kala3" name="kandung_kemih_objektif_kala3" value="<?php echo $row->kandung_kemih_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Kontraksi Uterus</span> 
+																		<input type="text" class="form-control"  id="kontraksi_uterus_objektif_kala3" name="kontraksi_uterus_objektif_kala3" value="<?php echo $row->kontraksi_uterus_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Kehamilan Ganda</span> 
+																		<input type="text" class="form-control"  id="kehamilan_ganda_objektif_kala3" name="kehamilan_ganda_objektif_kala3"value="<?php echo $row->kehamilan_ganda_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Semburan Darah</span> 
+																		<input type="text" class="form-control"  id="semburan_darah_objektif_kala3" name="semburan_darah_objektif_kala3" value="<?php echo $row->semburan_darah_objektif_kala3 ?>">
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Tali Pusat Memanjang</span> 
+																		<input type="text" class="form-control"  id="tali_pusat_memanjang_objektif_kala3" name="tali_pusat_memanjang_objektif_kala3" value="<?php echo $row->tali_pusat_memanjang_objektif_kala3 ?>">
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA IV</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_objektif_kala4" name="tanggal_objektif_kala4"  value="<?php echo $row->tanggal_objektif_kala4."T".$row->jam_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Keadaan Umum</span> 
+																		<input type="text" class="form-control"  id="keadaan_umum_objektif_kala4" name="keadaan_umum_objektif_kala4" value="<?php echo $row->keadaan_umum_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4  mb-3">
+																		<span class="input-group-text labelkolom">Kesadaran</span> 
+																		<input type="text" class="form-control"  id="kesadaran_objektif_kala4" name="kesadaran_objektif_kala4" value="<?php echo $row->kesadaran_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Keadaan Emosional</span> 
+																		<input type="text" class="form-control"  id="keadaan_emosional_objektif_kala4" name="keadaan_emosional_objektif_kala4" value="<?php echo $row->keadaan_emosional_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text bg-dark" style="color: white">TTV</span> 
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">TD</span> 
+																		<input type="text" class="form-control"  id="td_objektif_kala4" name="td_objektif_kala4" value="<?php echo $row->td_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Nadi</span> 
+																		<input type="text" class="form-control"  id="nadi_objektif_kala4" name="nadi_objektif_kala4" value="<?php echo $row->nadi_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Respirasi</span> 
+																		<input type="text" class="form-control"  id="respirasi_objektif_kala4" name="respirasi_objektif_kala4" value="<?php echo $row->respirasi_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Suhu</span> 
+																		<input type="text" class="form-control"  id="suhu_objektif_kala4" name="suhu_objektif_kala4" value="<?php echo $row->suhu_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">TFU</span> 
+																		<input type="text" class="form-control"  id="tfu_objektif_kala4" name="tfu_objektif_kala4" value="<?php echo $row->tfu_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Kontraksi</span> 
+																		<input type="text" class="form-control"  id="kontraksi_objektif_kala4" name="kontraksi_objektif_kala4" value="<?php echo $row->kontraksi_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Kandung Kemih</span> 
+																		<input type="text" class="form-control"  id="kandung_kemih_objektif_kala4" name="kandung_kemih_objektif_kala4" value="<?php echo $row->kandung_kemih_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Perdarahan</span> 
+																		<input type="text" class="form-control"  id="perdarahan_objektif_kala4" name="perdarahan_objektif_kala4" value="<?php echo $row->perdarahan_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Perineum</span> 
+																		<input type="text" class="form-control"  id="perineum_objektif_kala4" name="perineum_objektif_kala4" value="<?php echo $row->perineum_objektif_kala4 ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">Robekan</span> 
+																		<input type="text" class="form-control"  id="robekan_objektif_kala4" name="robekan_objektif_kala4" value="<?php echo $row->robekan_objektif_kala4 ?>">
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="pills-assesment" role="tabpanel" aria-labelledby="pills-assesment-tab">
+												<div class="row">
+													<div class="col-6">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA I</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3 ">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_assesment_kala1" name="tanggal_assesment_kala1" value="<?php echo $row->tanggal_assesment_kala1."T".$row->jam_assesment_kala1 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Keterangan Assesment</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_assesment_assesment_kala1" name="keterangan_assesment_assesment_kala1" rows="3"><?php echo $row->keterangan_assesment_kala1 ?></textarea> 
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Masalah</span> 
+																		<textarea type="text" class="form-control"  id="masalah_assesment_kala1" name="masalah_assesment_kala1" rows="3"><?php echo $row->masalah_assesment_kala1 ?></textarea> 
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Kebutuhan</span> 
+																		<textarea type="text" class="form-control"  id="kebutuhan_assesment_kala1" name="kebutuhan_assesment_kala1" rows="3"><?php echo $row->kebutuhan_assesment_kala1 ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA II</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3 ">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_assesment_kala2" name="tanggal_assesment_kala2" value="<?php echo $row->tanggal_assesment_kala2."T".$row->jam_assesment_kala2 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Keterangan Assesment</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_assesment_assesment_kala2" name="keterangan_assesment_assesment_kala2" rows="3"><?php echo $row->keterangan_assesment_kala2 ?></textarea> 
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Masalah</span> 
+																		<textarea type="text" class="form-control"  id="masalah_assesment_kala2" name="masalah_assesment_kala2" rows="3"><?php echo $row->masalah_assesment_kala2 ?></textarea> 
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Kebutuhan</span> 
+																		<textarea type="text" class="form-control"  id="kebutuhan_assesment_kala2" name="kebutuhan_assesment_kala2" rows="3"><?php echo $row->kebutuhan_assesment_kala2 ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA III</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3 ">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_assesment_kala3" name="tanggal_assesment_kala3" value="<?php echo $row->tanggal_assesment_kala3."T".$row->jam_assesment_kala3 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Keterangan Assesment</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_assesment_assesment_kala3" name="keterangan_assesment_assesment_kala3" rows="3"><?php echo $row->keterangan_assesment_kala3 ?></textarea> 
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Masalah</span> 
+																		<textarea type="text" class="form-control"  id="masalah_assesment_kala3" name="masalah_assesment_kala3" rows="3"><?php echo $row->masalah_assesment_kala3 ?></textarea> 
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Kebutuhan</span> 
+																		<textarea type="text" class="form-control"  id="kebutuhan_assesment_kala3" name="kebutuhan_assesment_kala3" rows="3"><?php echo $row->kebutuhan_assesment_kala3 ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA IV</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3 ">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_assesment_kala4" name="tanggal_assesment_kala4" value="<?php echo $row->tanggal_assesment_kala4."T".$row->jam_assesment_kala4 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Keterangan Assesment</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_assesment_assesment_kala4" name="keterangan_assesment_assesment_kala4" rows="3"><?php echo $row->keterangan_assesment_kala4 ?></textarea> 
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Masalah</span> 
+																		<textarea type="text" class="form-control"  id="masalah_assesment_kala4" name="masalah_assesment_kala4" rows="3"><?php echo $row->masalah_assesment_kala4 ?></textarea> 
+																	</div>
+																	<div class="col-md-6 mb-3">
+																		<span class="input-group-text labelkolom">Kebutuhan</span> 
+																		<textarea type="text" class="form-control"  id="kebutuhan_assesment_kala4" name="kebutuhan_assesment_kala4" rows="3"><?php echo $row->kebutuhan_assesment_kala4 ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="tab-pane fade" id="pills-planning" role="tabpanel" aria-labelledby="pills-planning-tab">
+												<div class="row">
+													<div class="col-12">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA I</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3 ">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_planning_kala1" name="tanggal_planning_kala1" value="<?php echo $row->tanggal_planning_kala1."T".$row->jam_planning_kala1 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Keterangan Planning</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_planning_kala1" name="keterangan_planning_kala1" rows="7"><?php echo $row->keterangan_planning_kala1; ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA II</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3 ">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_planning_kala2" name="tanggal_planning_kala2" value="<?php echo $row->tanggal_planning_kala2."T".$row->jam_planning_kala2 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Keterangan Planning</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_planning_kala2" name="keterangan_planning_kala2" rows="10"><?php echo $row->keterangan_planning_kala2; ?></textarea> 
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">JK</span> 
+																		<input type="text" class="form-control"  id="jk_planning_kala2" name="jk_planning_kala2" value="<?php echo $row->jk_planning_kala2; ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">BB</span> 
+																		<input type="text" class="form-control"  id="bb_planning_kala2" name="bb_planning_kala2" value="<?php echo $row->bb_planning_kala2; ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">PB</span> 
+																		<input type="text" class="form-control"  id="pb_planning_kala2" name="pb_planning_kala2" value="<?php echo $row->pb_planning_kala2; ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">LK</span> 
+																		<input type="text" class="form-control"  id="lk_planning_kala2" name="lk_planning_kala2" value="<?php echo $row->lk_planning_kala2; ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">LD</span> 
+																		<input type="text" class="form-control"  id="ld_planning_kala2" name="ld_planning_kala2" value="<?php echo $row->ld_planning_kala2; ?>">
+																	</div>
+																	<div class="col-md-4 mb-3">
+																		<span class="input-group-text labelkolom">LL</span> 
+																		<input type="text" class="form-control"  id="ll_planning_kala2" name="ll_planning_kala2" value="<?php echo $row->ll_planning_kala2; ?>">
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA III</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3 ">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_planning_kala3" name="tanggal_planning_kala3" value="<?php echo $row->tanggal_planning_kala3."T".$row->jam_planning_kala3 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Keterangan Planning</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_planning_kala3" name="keterangan_planning_kala3" rows="10"><?php echo $row->keterangan_planning_kala3; ?></textarea>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-12">		
+														<div class="card">
+															<div class="card-header" style="background: #f27e03">
+																<h5 style="color:white"><b>KALA IV</b></h5>
+															</div>
+															<div class="card-body">
+																<div class="row">
+																	<div class="col-md-12 mb-3 ">
+																		<span class="input-group-text labelkolom">Tanggal & Jam</span> 
+																		<input type="datetime-local" class="form-control"  id="tanggal_planning_kala4" name="tanggal_planning_kala4" value="<?php echo $row->tanggal_planning_kala4."T".$row->jam_planning_kala4 ?>">
+																	</div>
+																	<div class="col-md-12 mb-3">
+																		<span class="input-group-text labelkolom">Keterangan Planning</span> 
+																		<textarea type="text" class="form-control"  id="keterangan_planning_kala4" name="keterangan_planning_kala4" rows="7"><?php echo $row->keterangan_planning_kala3; ?></textarea> 
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="col-md-12x mt-3"> 
+										<div class="form-group row" style="background: #03b509">
+											<div class="col-sm-12 float-sm-right">
+												<h6 type="button transparent" onclick="hidecustomer()" style="letter-spacing:3px;color:white; background:transparent;margin-top: 10px" data-toggle="collapse" href="#customer_collapse" role="button" aria-expanded="false" aria-controls="customer_collapse"><b>TERAPI / PEMBERIAN OBAT</b></h6> 
+											</div>  
+										</div>
+										<br>
+										<div class="card-body" style="background: #f2f2f5; border-color: #ff1201">
+											<span>Keterangan</span> <br>
+											<span style="color:#ff1201 ">* Untuk Penulisan aturan pakai harus di sambung dan tidak boleh ada spasi </span><br>
+											<span style="color:#ff1201 ">* Contoh penulisan Dosis Obat : 1x3</span>
+										</div>
+										<br>
+
+										<!-- awal -->
+										<?php $i=1; foreach ($detail_obat as $key) {?>
+
+											<div class="row" id="obat<?php echo $i ?>" style="border: 1px solid #03b509;padding-top: 10px"> 
+												<div class="input-group mb-3 col-md-8 listobat">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white;">Nama Obat</span>
+													</div> 
+
+													<select type="text" class="form-control " satuan="<?php echo $key->satuan_obat ?>" data="<?php echo $key->nama_obat ?>" id="nama_obat<?php echo $i ?>" <?php $aturan=explode(' x ', $key->aturan_pakai);?> aturan_pakai="<?php echo $aturan[2] ?>" hari="<?php echo $aturan[1] ?>" dosis="<?php echo $aturan[0]; ?>"  name="nama_obat[]" onchange="cekobat(<?php echo $i; ?>)"   style="border-color: #03b509; background: #ffffff">
+														<option value="0" disabled="disabled" selected="selected"> -- Pilih Nama Obat --</option>
+														<?php foreach ($obat as $data) { ?>
+															<?php if ($data->total_stok!=0): ?> 
+																<option id="<?php echo $data->total_stok + floatval($key->qty); ?>" isi="<?php echo $data->keterangan ?>" subject="<?php echo $data->harga_jual ?>" data="<?php echo $data->satuan_obat ?>" value="<?php echo $data->kode_obat ?>"><?php echo $data->nama_obat ?></option>	
+															<?php endif ?>
+														<?php } ?> 
+													</select>  
+
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="satuan_obat<?php echo $i ?>" name="satuan_obat[]" style="background:#03b509; color: white"></span>
+														<input type="hidden" class="form-control" id="satuan<?php echo $i ?>" name="satuan[]" >
+													</div> 
+												</div>
+
+												<div class="input-group mb-3 col-md-4">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Qty</span>
+													</div>
+													<input type="text" class="form-control form-control-sm" id="qty<?php echo $i ?>" name="qty[]" onkeyup="hitungsubtotal(<?php echo $i ?>)" placeholder="Qty" value="<?php echo $key->qty ?>"  style="border-color: #03b509; background: #ffffff">   
+												</div> 
+
+												<div class="input-group mb-3 col-md-2" style="display: none;">
+													<div class="input-group-prepend"> 
+														<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Stok</span> 
+													</div>
+													<input type="text" class="form-control" id="total_stok<?php echo $i ?>" name="total_stok[]"  value="<?php echo floatval($key->total_stok) + floatval($key->qty)?>"readonly>	 
+												</div>   
+
+												<div class="input-group mb-3 col-md-2" style="display: none;">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Harga</span>
+													</div> 
+													<input type="text" class="form-control" id="harga_jual<?php echo $i ?>" value="<?php echo number_format(($key->harga_jual), 0, ',', '.')?>" name="harga_jual[]" readonly >
+												</div>  
+
+												<div class="input-group mb-3 col-md-12">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Aturan Pakai</span>
+													</div>
+													<input type="text" class="form-control" id="takaran<?php echo $i ?>" name="takaran[]" placeholder="Dosis"  width="5px"   style="text-align: center;border-color: #03b509; background: #ffffff">  
+													<span class="input-group-text" id="basic-addon3" style="background:#445245; color: white; ">=</span>
+													<select type="text" class="form-control" id="hari<?php echo $i ?>" name="hari[]" placeholder="Hari"  width="5px"  style="border-color: #03b509; background: #ffffff">   
+														<option value="0" selected disabled>Pilih Racik</option> 
+														<option value="Puyer">Puyer</option>
+														<option value="Puyer_10_bungkus">Puyer_10_bungkus</option>
+														<option value="Puyer_12_bungkus">Puyer_12_bungkus</option>
+														<option value="Puyer_15_bungkus">Puyer_15_bungkus</option> 
+														<option value="NonPuyer">NonPuyer</option>
+													</select>
+													<select class="form-control" id="aturan_pakai<?php echo $i ?>" name="aturan_pakai[]"   style="border-color: #03b509; background: #ffffff">
+														<option value="0" selected disabled>Aturan</option>
+														<option value="Sebelum Makan">Sebelum Makan</option>
+														<option value="Sesudah Makan">Sesudah Makan</option>
+														<option value="Saat Makan">Saat Makan</option>
+														<option value="Di Oles Tipis-Tipis">Di Oles Tipis-Tipis</option>
+														<option value="Tetes">Tetes</option>
+														<option value="Satu Kali Pakai">Satu Kali Pakai</option> 
+														<option value="Pcs">Pcs</option>
+														<option value="Bungkus">Bungkus</option>
+													</select> 
+												</div> 
+
+												<div class="input-group mb-3 keterangan_obat<?php echo $i?> col-md-12" style="display: none;">
+													<span class="input-group-text" id="keterangan_obat<?php echo $i ?>" style="background:#e27300; color: white;"></span> 
+												</div>   
+												<div class="mb-3 col-md-12" style="display: block;"> 
+													<span class="input-group-text labelkolom">Sub Total</span> 
+													<input type="text" class="form-control" id="subtotal<?php echo $i ?>" name="subtotal[]" placeholder="Total" disabled="disabled" readonly="readonly" value="<?php echo number_format(($key->subtotal), 0, ',', '.') ?>"> 
+												</div>  
+
+												<div class="input-group mb-3 col-md-2" id="btn-groupobat<?php echo $i ?>">
+													<button id="tambahobat<?php echo $i ?>" type="button" class="btn btn-sm btn-success btn_tambah mr-2" onclick="tambahobat(<?php echo $i ?>)">+</button> 
+													<button id="hapusobat<?php echo $i ?>" type="button" class="btn btn-sm btn-danger mr-2" onclick="hapusobat(<?php echo $i ?>)">-</button> 
+												</div>
+											</div> 
+
+											<?php $i++; } ?>
+
+											<!-- akhir --> 
+
+										<!-- 
+										<?php $no=1; foreach ($detail_obat as $key): ?>
+
+										<div class="row" id="Obat<?php echo($no)?>" style="border: 1px solid #e4e4e4;padding-top: 10px"> 
+											<div class="input-group mb-3 col-md-8 listobat">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white;">Nama Obat</span>
+												</div> 
+
+												<select type="text" data="" class="form-control " id="nama_obat<?php echo($no)?>" name="nama_obat[]" onchange="cekobat(<?php echo($no)?>)"  style="border-color: #03b509; background: #ffffff;width: 75%">
+													<option></option>
+													<?php foreach ($obat as $data) { ?>
+														<?php if ($data->total_stok!=0): ?>
+
+															<option id="<?php echo $data->total_stok; ?>" isi="<?php echo $data->keterangan ?>" subject="<?php echo $data->harga_jual ?>" data="<?php echo $data->satuan_obat ?>" value="<?php echo $data->kode_obat ?>"><?php $cek = str_replace("'", '&apos;', $data->nama_obat);echo $cek ?> || <?php echo $data->keterangan ?></option>
+														<?php endif ?>
+
+													<?php } ?> 
+												</select>  
+
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="satuan_obat<?php echo($no)?>" name="satuan_obat[]" style="background:#03b509; color: white;display: none "></span>
+													<input type="hidden" class="form-control" id="satuan<?php echo($no)?>" name="satuan[]" >
+												</div>
+
+											</div>
+
+											<div class="input-group mb-3 col-md-4">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Qty</span>
+												</div>
+												<input type="text" class="form-control" id="qty<?php echo($no)?>" name="qty[]" onkeyup="hitungsubtotal(this.value,<?php echo($no)?>)" placeholder="Qty"  style="border-color: #03b509; background: #ffffff" value="<?php echo $key->qty ?>">  
+
+											</div>  
+
+
+
+											<div class="input-group mb-3 col-md-12">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Aturan Pakai</span>
+												</div>
+												<input type="text" class="form-control" id="takaran<?php echo($no)?>" name="takaran[]" placeholder="Dosis"  width="5px" style="text-align: center;border-color: #03b509; background: #ffffff" value="<?php $aturan = explode(' x ', $key->aturan_pakai); echo $aturan[0] ?>">  
+												<span class="input-group-text" id="basic-addon3" style="background:#445245; color: white; ">=</span>
+												<select type="text" class="form-control" id="hari<?php echo($no)?>" name="hari[]" placeholder="Hari"  width="5px"  style="border-color: #03b509; background: #ffffff">  
+													<option value="0" selected disabled>Pilih Racik</option> 
+													<option value="Puyer">Puyer</option>
+													<option value="Puyer_10_bungkus">Puyer_10_bungkus</option>
+													<option value="Puyer_12_bungkus">Puyer_12_bungkus</option>
+													<option value="Puyer_15_bungkus">Puyer_15_bungkus</option> 
+													<option value="NonPuyer">NonPuyer</option>
+												</select> 
+												<select class="form-control" id="aturan_pakai<?php echo($no)?>" name="aturan_pakai[]" style="border-color: #03b509; background: #ffffff" >
+													<option value="0" selected disabled>Aturan</option>
+
+													<option value="Sebelum Makan">Sebelum Makan</option>
+													<option value="Sesudah Makan">Sesudah Makan</option>
+													<option value="Saat Makan">Saat Makan</option>
+													<option value="Di Oles Tipis-Tipis">Di Oles Tipis-Tipis</option>
+													<option value="Tetes">Tetes</option>
+													<option value="Satu Kali Pakai">Satu Kali Pakai</option> 
+													<option value="Pcs">Pcs</option>
+												</select> 
+
+											</div>
+
+
+
+											<div class="input-group mb-3 col-md-2" style="display: none">
+												<div class="input-group-prepend"> 
+													<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Stok</span> 
+												</div>
+												<input type="text" class="form-control" id="total_stok<?php echo($no)?>" name="total_stok[]" value="0" readonly>	
+
+											</div>  
+
+
+
+
+
+											<div class="input-group mb-3 col-md-2" style="display: none">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Harga</span>
+												</div> 
+												<input type="text" class="form-control" id="harga_jual<?php echo($no)?>" name="harga_jual[]" readonly >
+											</div> 
+
+
+
+											<div class="input-group mb-3 keterangan_obat1 col-md-12" style="display: none;">
+												<span class="input-group-text" id="keterangan_obat<?php echo($no)?>" style="background:#e27300; color: white;"></span>
+
+											</div> 
+
+
+
+
+											<div class="input-group mb-3 col-md-2" style="display: none;">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Sub Total</span>
+												</div>
+												<input type="text" class="form-control" id="subtotal<?php echo($no)?>" name="subtotal[]" placeholder="Total" disabled="disabled" readonly="readonly">  
+											</div>  
+											<div class="input-group mb-3 col-md-2" id="btn-groupobat1">
+												<button id="tambahobat1" type="button" class="btn btn-sm btn-success mr-2" onclick="tambahobat(<?php echo($no)?>)">+</button>
+											</div>
+
+										</div> 
+
+										<br>
+										<?php endforeach ?> -->
+
+
+
+
+										<div class="row mb-6">
+
+
+											<div class="input-group mb-3 col-md-3">
+
+											</div>
+
+											<div class="input-group mb-3 col-md-3 "  style="display: none">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Jasa Dokter</span>
+
+												</div>
+												<input type="text" class="form-control" name="tarif_dokter" id="tarif_dokter" value="<?php echo number_format($this->session->tarif_dokter, 0, ',', '.') ?>">
+											</div> 
+
+
+
+											<div class="input-group col-md-6  mb-3"  style="display: none">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Total Akhir</span>
+
+												</div>
+												<input type="text" class="form-control" name="total_akhir[]" id="total_akhir" style="text-align: right;font-weight: bold;font-size: 18px;" disabled>
+											</div> 
+
+											<hr>
+											<br>
+											<div class="col-md-12" style="margin-top: 70px;">
+
+												<a href="<?php echo site_url('inc') ?>" class="btn btn-danger mr-2 float-sm-right" style="float:right" ><i class="fa fa-times  mr-2"></i> BATAL</a>
+												<button id="update_data_inc" type="submit" class="btn btn-success mr-2" style="float:right" > <i class="fa fa-save  mr-2"></i> Update DATA REKAM</button> 
+											</div> 
+										</div>
+									</div> 
+
+									<br>
+									<br>
+									<br>
+
+
+									<hr> 
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+
+			</div> 
+
+
+		<?php } ?>    
+
+	</div>
+	<div class="modal fade" id="modal_lihat" tabindex="-1" role="dialog" aria-labelledby="modal_lihat_stok" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" > 
+				<div class="modal-header" style="background: #31ce36">
+					<h5 id="modal_lihat_stok" style="color: white;font-weight:bold;font-family: Century Gothic"><i class="fas fa-pills mr-2"></i></i>Data Stok Obat</h5>
+				</div> 
+
+				<div class="modal-body"> 
+					<table  id="example1" class="table table-bordered table-sm " cellspacing="0" width="100%">
+						<thead>
+							<tr style="background: #5f7cff ;text-align: center; color:white">
+								<!-- <td>Kode</td> -->
+								<th>No</th>                    
+								<th >Nama Obat</th> 
+								<th >Stok Obat</th> 
+								<th >Status Obat</th>  
+							</tr>
+						</thead>
+						<tbody id="show_data">
+
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+
+				let jumlah_obat = "<?php echo count($detail_obat) ?>";
+				$('.btn_tambah').each(function(){
+					let id = $(this).attr('id');
+					if (id=='tambahobat'+jumlah_obat) {
+						$(this).css('display','');
+					}else{
+						$(this).css('display','block');
+
+					}
+				});
+				for (var i= 1;i<=jumlah_obat; i++) {
+					let obat = $('#nama_obat'+i).attr('data');
+					let satuan = $('#nama_obat'+i).attr('satuan');
+					let dosis = $('#nama_obat'+i).attr('dosis');
+					let hari = $('#nama_obat'+i).attr('hari');
+					let racik = $('#nama_obat'+i).attr('racik');
+					let aturan_pakai = $('#nama_obat'+i).attr('aturan_pakai');
+					$('#satuan_obat'+i).html(satuan);
+					$('#takaran'+i).val(dosis);
+					$('#hari'+i).val(hari);
+					$('#racik'+i).val(racik);
+					$('#racik'+i+' option').each(function(){
+						let pilihan_aturan = $(this).val();
+						if (racik==pilihan_aturan) {
+							$(this).attr('selected','selected');
+						}
+					});
+
+
+					$('#aturan_pakai'+i+' option').each(function(){
+						let pilihan_aturan = $(this).val();
+						if (aturan_pakai==pilihan_aturan) {
+							$(this).attr('selected','selected');
+						}
+					});
+
+
+					$('#nama_obat'+i+' option').each(function(){
+						let pilihan_obat = $(this).html();
+						if (obat==pilihan_obat) {
+							$(this).attr('selected','selected');
+						}
+					});
+
+				}
+				hitungtotalakhir();
+
+
+
+			});
+			$('#update_data_inc').on('click',function(){
+				let total_akhir = $('#total_akhir').val().toString().replace(/\./g,'');
+					// var tanggal_periksa = $('#tanggal_periksa').val(); 
+					var keluhan = $('#keluhan').val(); 
+					var hasil_pemeriksaan = $('#hasil_pemeriksaan').val(); 
+					var diagnosa = $('#diagnosa').val(); 
+
+					// if (tanggal_periksa == "") {
+					// 	alert("Tanggal Periksa Belum Terisi");
+					// 	$('#tanggal_periksa').focus();
+					// 	return false;
+					// }
+
+					if (keluhan == "") {
+						alert("Keluhan Belum Terisi");
+						$('#keluhan').focus();
+						return false;
+					}
+
+					if (hasil_pemeriksaan == "") {
+						alert("Hasil Pemeriksaan Belum Terisi");
+						$('#hasil_pemeriksaan').focus();
+						return false;
+					}
+
+					// validasi lewat class
+					let cek='';
+					$('[name^="nama_obat"]').each(function(){
+						var id =$(this).attr('id')[$(this).attr('id').length-1];
+						var nama_obat = $('#nama_obat'+id).val();
+						var qty = $('#qty'+id).val();
+						var takaran = $('#takaran'+id).val();
+						var hari = $('#hari'+id).val();
+						var aturan_pakai = $('#aturan_pakai'+id).val();
+						// if (nama_obat == null) {
+						// 	alert("Nama obat Belum Terisi");
+						// 	$('#nama_obat'+id).focus();
+						// 	cek+='false';
+
+						// 	return false;
+						// }
+
+						if (nama_obat != null) {
+
+							if (qty=="") {
+								alert("Silahkan masukan Qty!");
+								$('#qty'+id).focus();
+								cek+='false';
+
+								return false;
+
+
+							}
+
+							if (takaran=="") {
+								alert("Silahkan masukan Takaran Obat!");
+								$('#takaran'+id).focus();
+								cek+='false';
+
+								return false;
+							}
+
+							if (hari=="") {
+								alert("Silahkan masukan Hari!");
+								$('#hari'+id).focus();
+								cek+='false';
+
+								return false;
+							}
+
+
+							if (aturan_pakai==null) {
+								alert("Silahkan Pilih Aturan Pakai!");
+								$('#aturan_pakai'+id).focus();
+								cek+='false';
+
+								return false;
+							}
+						}
+
+
+					});
+
+					if (cek=='false') {
+						return false;
+					}else{
+
+						let link = '<?php echo base_url()?>inc/updatedatainc/'+total_akhir;
+						$('.updatedata').attr('action',link);
+						$('.updatedata').submit(); 
+
+					}
+
+
+				});
+
+			function cekobat(id){
+
+				let nama_obat = $('#nama_obat'+id+' option:selected').text();						
+				reset(id);
+
+				hitungtotalakhir();
+
+				let cek =0;
+				$('[name^="nama_obat"]').each(function(){
+					let obat = $('#'+$(this).attr('id')+" option:selected").text();
+					if (obat==nama_obat) {
+						cek+=1;								
+					}
+					
+				});
+
+				if (cek>1) {
+					alert('Duplikat Obat, Silahkan Pilih Obat Lain! atau tambahkan Qty di Obat yang Sudah Ada!');
+					reset(id);
+					$('#nama_obat'+id).val(0);
+
+					hitungtotalakhir();
+
+					return false;
+				}
+
+
+
+				let satuan_obat = $('#nama_obat'+id+' option:selected').attr('data');
+				let harga_jual = $('#nama_obat'+id+' option:selected').attr('subject');
+				let total_stok = $('#nama_obat'+id+' option:selected').attr('id');
+				if (validasi_stok(id)==false) {
+					return false;
+				};
+
+				let keterangan_obat = $('#nama_obat'+id+' option:selected').attr('isi');					
+
+				$('#keterangan_obat'+id).html(keterangan_obat);
+				if (keterangan_obat!='') {
+					$('.keterangan_obat'+id).css('display','block');
+				}else{
+					$('.keterangan_obat'+id).css('display','none');
+
+				}
+
+				$('#satuan_obat'+id).html(satuan_obat);
+
+
+
+				$('#satuan'+id).val(satuan_obat);
+
+				$('#satuan_obat'+id).css('display','inline-block');
+				$('#total_stok'+id).val(total_stok);
+				SeparatorRibuan(harga_jual.toString(),'harga_jual'+id);
+				hitungsubtotal(id);
+
+
+			}
+			function validasi_stok(id){
+				let total_stok = parseFloat($('#nama_obat'+id+' option:selected').attr('id'));
+				let qty = parseFloat($('#qty'+id).val());
+				if (total_stok<qty) {
+					alert('Stok Obat tidak Mencukupi!');
+					$('#qty'+id).val('');
+					$('#subtotal'+id).val(0);
+					hitungtotalakhir();
+
+					return false; 
+				} 
+				if (total_stok<=0) {
+					alert('Stok Obat Kosong, Silahkan Pilih Obat Lain!');
+					$('#qty'+id).val('');
+					$('#nama_obat'+id).val(0);
+					$('#subtotal'+id).val(0);
+
+					hitungtotalakhir();
+
+					return false;
+				}
+			}
+
+			function hitungsubtotal(id){
+				if (validasi_stok(id)==false) {
+					return false;
+				};
+				let harga_jual = $('#harga_jual'+id).val().toString().replace(/\./g,'')!=""?$('#harga_jual'+id).val().toString().replace(/\./g,''):0;
+				let qty = $('#qty'+id).val().toString().replace(/\./g,'')!=""?$('#qty'+id).val().toString().replace(/\./g,''):0;
+				let total = parseFloat(harga_jual)*parseFloat(qty);
+				SeparatorRibuan(total.toString(),'subtotal'+id);
+				hitungtotalakhir();
+			}
+
+			function hitungtotalakhir(){
+				let tarif_dokter = $('#tarif_dokter').val().toString().replace(/\./g,'');
+				let total=0;
+				$('[name^="nama_obat"]').each(function(){
+					let id = $(this).attr('id').replace('nama_obat','');
+					let sub = $('#subtotal'+id).val();
+					if (sub!='' && sub>0) {
+						let subtotal = sub.toString().replace(/\./g,'');
+						total+=parseFloat(subtotal);
+					}
+				});
+				let total_akhir=parseFloat(total) + parseFloat(tarif_dokter);
+				SeparatorRibuan(total_akhir.toString(),'total_akhir');
+			}
+
+
+
+			function reset(kode_baru){
+				$('#satuan_obat'+kode_baru).html('');
+				$('#satuan_obat'+kode_baru).css('display','none');
+				$('#total_stok'+kode_baru).val(0);
+				$('#qty'+kode_baru).val('');
+				$('#harga_jual'+kode_baru).val('');
+				$('#takaran'+kode_baru).val('');
+				$('#hari'+kode_baru).val('');
+				$('#aturan_pakai'+kode_baru).val(0);
+				$('#subtotal'+kode_baru).val('');
+			}
+
+			function hapusobat(kode_baru){
+				let kode = parseFloat(kode_baru)-1;
+				let jumlah_baris = $('.listobat').length;
+				if (jumlah_baris==1) {
+					reset(kode_baru);
+					$('#nama_obat'+kode_baru).val(0);
+
+					
+					hitungtotalakhir();
+
+					return false;
+				}
+
+				$('#obat'+kode_baru).remove();
+				$('.btn_tambah:last').css('display','');
+				hitungtotalakhir();
+
+
+				
+			}
+
+			function tambahobat(kode) {
+				var kode_baru = parseFloat(kode)+1;
+				if ($('#nama_obat'+kode).val()==null) {
+					alert('Silahkan Masukkan Nama Obat yang Kosong!');
+					$('#nama_obat'+kode).focus();
+					return false;
+				}
+						// else{
+						// 	if ($('#qty'+kode).val()=='') {
+						// 		alert('Silahkan Masukkan Qty yang kosong!');
+						// 		$('#qty'+kode).focus();
+						// 		return false;
+						// 	}
+
+						// 	// if ($('#takaran'+kode).val()=='') {
+						// 	// 	alert('Silahkan Masukkan Dosis yang kosong!');
+						// 	// 	$('#takaran'+kode).focus();
+						// 	// 	return false;
+						// 	// }
+
+						// 	// if ($('#hari'+kode).val()=='') {
+						// 	// 	alert('Silahkan Masukkan hari yang kosong!');
+						// 	// 	$('#hari'+kode).focus();
+						// 	// 	return false;
+						// 	// }
+
+						// 	if ($('#aturan_pakai'+kode).val()==null) {
+						// 		alert('Silahkan Pilih Aturan Pakai yang kosong!');
+						// 		$('#aturan_pakai'+kode).focus();
+						// 		return false;
+						// 	}
+
+						// }
+						var html="";
+
+						html+='<div class="row" id="obat'+kode_baru+'" style="border: 1px solid #03b509;padding-top: 10px">'+
+
+
+						'<div class="input-group mb-3 col-md-8 listobat">'+
+						'<div class="input-group-prepend">'+
+						'<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white;">Nama Obat</span> </div> '+
+
+						'<select type="text" data="" class="form-control " id="nama_obat'+kode_baru+'" name="nama_obat[]" onchange="cekobat('+kode_baru+')"  style="border-color: #03b509; background: #ffffff">'+
+						'<option value="0" disabled="disabled" selected="selected"> -- Pilih Nama Obat --</option>'+
+						'<?php foreach ($obat as $data) { ?>'+ 
+						'<?php if ($data->total_stok!=0): ?>'+ 
+						'<option id="<?php echo $data->total_stok; ?>" isi="<?php echo $data->keterangan ?>" subject="<?php echo $data->harga_jual ?>" data="<?php echo $data->satuan_obat ?>" value="<?php echo $data->kode_obat ?>"><?php echo $data->nama_obat ?></option>	'+
+						'<?php endif ?>'+ 
+						'<?php } ?> </select> '+
+
+						'<div class="input-group-prepend">'+
+						'<span class="input-group-text" id="satuan_obat'+kode_baru+'" name="satuan_obat[]" style="background:#03b509; color: white;display: none "></span>'+
+						'<input type="hidden" class="form-control" id="satuan'+kode_baru+'" name="satuan[]" >'+
+						'</div></div>'+
+
+						'<div class="input-group mb-3 col-md-4">'+
+						'<div class="input-group-prepend">'+
+						'<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Qty</span>'+
+						'</div>'+
+						'<input type="text" class="form-control" id="qty'+kode_baru+'" name="qty[]" onkeyup="hitungsubtotal('+kode_baru+')" placeholder="Qty"  style="border-color: #03b509; background: #ffffff"> '+ 
+
+						'</div>'+
+
+						'<div class="input-group mb-3 col-md-2" style="display:none">'+
+						'<div class="input-group-prepend"> '+
+						'<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Stok</span> '+
+						'</div>'+
+						'<input type="text" class="form-control" id="total_stok'+kode_baru+'" name="total_stok[]" value="0" readonly>'+	
+
+						'</div>'+	
+
+
+						'<div class="input-group mb-3 col-md-2" style="display:none">'+
+						'<div class="input-group-prepend">'+
+						'<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Harga</span>'+
+						'</div> '+
+						'<input type="text" class="form-control" id="harga_jual'+kode_baru+'" name="harga_jual[]" readonly >'+
+						'</div>  '+
+
+
+
+						'<div class="input-group mb-3 col-md-12">'+
+						'<div class="input-group-prepend">'+
+						'<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Aturan Pakai</span>'+
+						'</div>'+
+						'<input type="text" class="form-control" id="takaran'+kode_baru+'" name="takaran[]" placeholder="Dosis"  width="5px"  style="border-color: #03b509; background: #ffffff;text-align:center">  '+
+						'<span class="input-group-text" id="basic-addon3" style="background:#445245; color: white; ">X</span>'+
+						'<select type="text" class="form-control" id="hari'+kode_baru+'" name="hari[]" placeholder="Hari"  width="5px"   style="border-color: #03b509; background: #ffffff"> '+
+						'<option value="0" selected disabled>Pilih Racik</option>'+
+						'<option value="Puyer">Puyer</option>'+
+						'<option value="Puyer_10_bungkus">Puyer_10_bungkus</option>'+
+						'<option value="Puyer_12_bungkus">Puyer_12_bungkus</option>'+
+						'<option value="Puyer_15_bungkus">Puyer_15_bungkus</option>'+ 
+						'<option value="NonPuyer">NonPuyer</option>'+ 
+						'</select>'+
+						'<select class="form-control" id="aturan_pakai'+kode_baru+'" name="aturan_pakai[]" style="border-color: #03b509; background: #ffffff">'+
+						'<option value="0" selected disabled>Aturan</option>'+
+						'<option value="Sebelum Makan">Sebelum Makan</option>'+ 
+						'<option value="Sesudah Makan">Sesudah Makan</option>'+
+						'<option value="Saat Makan">Saat Makan</option>'+
+						'<option value="Di Oles Tipis-Tipis">Di Oles Tipis-Tipis</option>'+
+						'<option value="Tetes">Tetes</option>'+
+						'<option value="Satu Kali Pakai">Satu Kali Pakai</option>'+ 
+						'<option value="Pcs">Pcs</option>'+
+						'<option value="Bungkus">Bungkus</option>'+
+						'</select> '+
+
+						'</div>	'+ 
+
+
+						'<div class="input-group mb-3 keterangan_obat'+kode_baru+' col-md-12" style="display: none;">'+
+						'<span class="input-group-text" id="keterangan_obat'+kode_baru+'" style="background:#e27300; color: white;"></span>'+
+						'</div> '+
+
+						'<div class="mb-3 col-md-12" style="display:block">'+ 
+						'<span class="input-group-text" id="basic-addon3" style="background:#03b509; color: white; ">Sub Total</span>'+ 
+						'<input type="text" class="form-control form-control-sm" id="subtotal'+kode_baru+'" name="subtotal[]" placeholder="Total" disabled="disabled" readonly="readonly">  '+
+						'</div>  '+
+
+						'<div class="col-md-2" id="btn-groupobat'+kode_baru+'">'+
+						'<button id="tambahobat'+kode_baru+'" type="button" class="btn btn-sm btn-success btn_tambah mr-1" onclick="tambahobat('+kode_baru+')">+</button>'+
+						'<button id="hapusobat'+kode_baru+'" type="button" class="btn btn-sm btn-danger" onclick="hapusobat('+kode_baru+')">-</button>'+
+						'</div>'+ 
+						'</div> ';
+						$('#obat'+kode).after(html);
+						$('#tambahobat'+kode).css('display','block');
+
+					}
+
+					function SeparatorRibuan(bilangan,id){
+						let angka = bilangan.replace(/\./g,'');
+						let sisa 	= angka.length % 3;
+						awalan 	= angka.substr(0, sisa);
+						ribuan 	= angka.substr(sisa).match(/\d{3}/g);
+						if (ribuan) {
+							separator = sisa ? '.' : '';
+							hasil = awalan + separator + ribuan.join('.');
+							$('#'+id).val(hasil);
+
+
+						}
+					}
+
+
+
+
+				</script>
+
+
+
+
+
+
+
+
+
+
+
