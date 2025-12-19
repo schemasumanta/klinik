@@ -4,7 +4,7 @@
 
   "short_name": "Petra",
 
-  "start_url": "https://ps.petragroup.c.id/petragroup",
+  "start_url": "https://ps.petragroup.co.id/petragroup",
 
   "display": "standalone",
 
@@ -16,7 +16,7 @@
 
   "icons": [{
 
-    "src": "https://ps.petragroup.c.id/petragroup/assets/img/petra_logo.png",
+    "src": "https://ps.petragroup.co.id/petragroup/assets/img/petra_logo.png",
 
     "sizes": "48x48",
 
@@ -24,7 +24,7 @@
 
   }, {
 
-    "src": "https://ps.petragroup.c.id/petragroup/assets/img/petra_logo.png",
+    "src": "https://ps.petragroup.co.id/petragroup/assets/img/petra_logo.png",
 
     "sizes": "72x72",
 
@@ -32,7 +32,7 @@
 
   }, {
 
-    "src": "https://ps.petragroup.c.id/petragroup/assets/img/petra_logo.png",
+    "src": "https://ps.petragroup.co.id/petragroup/assets/img/petra_logo.png",
 
     "sizes": "96x96",
 
@@ -40,7 +40,7 @@
 
   }, {
 
-    "src": "https://ps.petragroup.c.id/petragroup/assets/img/petra_logo.png",
+    "src": "https://ps.petragroup.co.id/petragroup/assets/img/petra_logo.png",
 
     "sizes": "144x144",
 
@@ -48,14 +48,14 @@
 
   }, {
 
-    "src": "https://ps.petragroup.c.id/petragroup/assets/img/petra_logo.png",
+    "src": "https://ps.petragroup.co.id/petragroup/assets/img/petra_logo.png",
     "sizes": "168x168",
 
     "type": "image/png"
 
   }, {
 
-    "src": "https://ps.petragroup.c.id/petragroup/assets/img/petra_logo.png",
+    "src": "https://ps.petragroup.co.id/petragroup/assets/img/petra_logo.png",
 
     "sizes": "192x192",
 
@@ -63,12 +63,13 @@
 
   }, {
 
-   "src": "https://ps.petragroup.c.id/petragroup/assets/img/petra_logo.png",
+   "src": "https://ps.petragroup.co.id/petragroup/assets/img/petra_logo.png",
 
     "sizes": "512x512",
 
     "type": "image/png"
 
   }]
+
 
 }
